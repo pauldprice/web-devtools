@@ -33,6 +33,3 @@ CLAUDE.md
 
 # Vite cache
 .vite/
-
-# Lock files (optional - you may want to commit these)
-package-lock.json
