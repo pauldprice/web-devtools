@@ -11,7 +11,10 @@ export default function Sidebar({ tools, currentTool, onSelectTool, searchQuery,
 
   return (
     <aside className="sidebar">
-      <div className="sidebar-header">
+      <div className="sidebar-header" 
+           style={{ cursor: 'pointer' }}
+           onClick={() => onSelectTool(null)}
+           title="Return to home">
         <h1>Developer Utilities</h1>
         <div className="sub">Quick text & data transformations • All in-browser</div>
       </div>

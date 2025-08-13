@@ -8,6 +8,7 @@ A collection of browser-based developer tools for text and data transformations.
 
 ## Features
 
+### Core Tools
 - 🔄 **Text → JavaScript String** - Convert text to escaped JS string literals
 - 📋 **JSON Prettifier** - Format and validate JSON with proper indentation  
 - 🔗 **URI Encoder** - Safely encode URL parameters
@@ -18,10 +19,25 @@ A collection of browser-based developer tools for text and data transformations.
 - ⏰ **Timestamp ⇄ ISO** - Convert between Unix timestamps and ISO 8601 dates
 - 🔓 **JWT Decoder** - Decode and inspect JWT tokens (no signature verification)
 
+### Privacy-Focused Tools (New!)
+- 🗄️ **SQL Formatter** - Format SQL queries without exposing schemas
+- 🔍 **Regex Tester** - Test patterns with real-time highlighting  
+- 🔑 **Password Generator** - Cryptographically secure passwords
+- 📊 **Text Diff** - Compare texts with visual highlighting
+
 ## Usage
 
 ### Online
 Visit [https://pauldprice.github.io/web-devtools/](https://pauldprice.github.io/web-devtools/)
+
+### Direct Tool Links
+Each tool has a unique URL for bookmarking and sharing:
+- JSON Prettifier: `#json-pretty`
+- SQL Formatter: `#sql`
+- Regex Tester: `#regex`
+- Password Generator: `#password`
+- Text Diff: `#diff`
+- [Full list of tool IDs in source](src/tools/index.js)
 
 ### Local Development
 1. Clone the repository:
