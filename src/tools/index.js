@@ -63,5 +63,33 @@ export const tools = [
     description: 'Decode and inspect JWT tokens',
     tags: ['token', 'auth'],
     component: () => import('./JwtDecoder')
+  },
+  {
+    id: 'sql',
+    name: 'SQL Formatter',
+    description: 'Format and beautify SQL queries',
+    tags: ['database', 'query', 'format'],
+    component: () => import('./SqlFormatter')
+  },
+  {
+    id: 'regex',
+    name: 'Regex Tester',
+    description: 'Test and debug regular expressions',
+    tags: ['pattern', 'match', 'test'],
+    component: () => import('./RegexTester')
+  },
+  {
+    id: 'password',
+    name: 'Password Generator',
+    description: 'Generate secure random passwords',
+    tags: ['security', 'random', 'crypto'],
+    component: () => import('./PasswordGenerator')
+  },
+  {
+    id: 'diff',
+    name: 'Text Diff',
+    description: 'Compare and visualize text differences',
+    tags: ['compare', 'merge', 'changes'],
+    component: () => import('./TextDiff')
   }
 ];
