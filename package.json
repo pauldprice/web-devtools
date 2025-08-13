@@ -1,0 +1,33 @@
+{
+  "name": "devtools",
+  "version": "1.0.0",
+  "description": "A collection of browser-based developer tools for text and data transformations. All processing happens locally in your browser - no data ever leaves your machine.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --config vite.config.js --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:prod": "npm run build && cp dist/index.html ./index.html",
+    "deploy": "npm run build:prod && git add index.html && git commit -m 'Build and deploy' && git push"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pauldprice/web-devtools.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pauldprice/web-devtools/issues"
+  },
+  "homepage": "https://github.com/pauldprice/web-devtools#readme",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^5.0.0",
+    "vite": "^7.1.2",
+    "vite-plugin-singlefile": "^2.3.0"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  }
+}

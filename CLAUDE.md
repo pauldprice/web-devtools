@@ -8,14 +8,19 @@ Developer utilities web application - a single-page application providing 9 text
 
 ## Architecture
 
-**Single-file application**: All HTML, CSS, and JavaScript are contained in `devtools.html`. This is intentional for simplicity and portability.
+**Modular React application** built with Vite that compiles to a single HTML file:
+- **Source code**: Modular React components in `src/`
+- **Build output**: Single `index.html` file with everything inlined
+- **Development**: Full React development experience with HMR
+- **Production**: Single file for GitHub Pages deployment
 
 ## Development Commands
 
-This is a static HTML application with no build process:
-- **Run locally**: Open `devtools.html` directly in a browser
-- **Serve locally**: Use any static file server (e.g., `python -m http.server` or `npx serve`)
-- **No build/test/lint commands** - the application is ready to use as-is
+- **Install dependencies**: `npm install`
+- **Development server**: `npm run dev` (with hot reload)
+- **Build single file**: `npm run build` (creates `dist/index.html`)
+- **Deploy to GitHub Pages**: `npm run deploy` (builds and commits)
+- **Preview build**: `npm run preview`
 
 ## Key Implementation Details
 
