@@ -7,7 +7,6 @@ yarn-error.log*
 # Build output
 dist/
 dist-ssr/
-index.html
 _site/
 
 # Environment files
