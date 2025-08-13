@@ -1,5 +1,7 @@
 # Developer Utilities
 
+[![Tests](https://github.com/pauldprice/web-devtools/actions/workflows/static.yml/badge.svg)](https://github.com/pauldprice/web-devtools/actions/workflows/static.yml)
+
 A collection of browser-based developer tools for text and data transformations. All processing happens locally in your browser - no data ever leaves your machine.
 
 🔗 **[Try it live](https://pauldprice.github.io/web-devtools/)**
@@ -28,16 +30,20 @@ Visit [https://pauldprice.github.io/web-devtools/](https://pauldprice.github.io/
    cd devtools
    ```
 
-2. Open `index.html` in your browser or serve it locally:
+2. Install dependencies:
    ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Node.js
-   npx serve
-   
-   # Or simply open the file
-   open index.html
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Or build and preview the production version:
+   ```bash
+   npm run build
+   npm run preview
    ```
 
 ## Keyboard Shortcuts
@@ -67,20 +73,21 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 - Translations
 
 ### Development Guidelines
-- Keep everything in a single HTML file for simplicity
-- No external dependencies
-- Maintain privacy-first approach (no external requests)
-- Follow existing code style
+- Build outputs to a single HTML file for easy deployment
+- No runtime dependencies or external API calls
+- Maintain privacy-first approach (all processing client-side)
+- Follow existing React component patterns
+- Use modular architecture in src/ directory
 
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details
 
-## Author
+## Authors
 
-Paul Price(https://github.com/pauldprice)
-Claude Code
+👤 **Paul Price** (https://github.com/pauldprice)  
+🤖 **Claude Code**
 
 ## Acknowledgments
 
-Built with vanilla HTML, CSS, and JavaScript. No frameworks required!
+Built with React and Vite, compiled to a single HTML file for easy deployment. No runtime dependencies or external API calls!
