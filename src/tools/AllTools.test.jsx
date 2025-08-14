@@ -13,7 +13,7 @@ import TextDiff from './TextDiff'
 describe('Tool Smoke Tests', () => {
   it('JsStringTool renders', () => {
     render(<JsStringTool />)
-    expect(screen.getByText('Text to JavaScript String')).toBeInTheDocument()
+    expect(screen.getByText('Text to JavaScript String Literal')).toBeInTheDocument()
   })
 
   it('UriEncoder renders', () => {
@@ -28,7 +28,7 @@ describe('Tool Smoke Tests', () => {
 
   it('TimestampConverter renders', () => {
     render(<TimestampConverter />)
-    expect(screen.getByText(/Timestamp/)).toBeInTheDocument()
+    expect(screen.getByText('Timestamp Converter')).toBeInTheDocument()
   })
 
   it('JwtDecoder renders', () => {

@@ -73,7 +73,7 @@ describe('CaseConverter', () => {
   it('clears all fields', () => {
     render(<CaseConverter />)
     const input = screen.getByLabelText('Input Text')
-    const clearBtn = screen.getByText('Clear')
+    const clearBtn = screen.getByText('Clear All')
     
     fireEvent.change(input, { target: { value: 'test' } })
     fireEvent.click(clearBtn)
