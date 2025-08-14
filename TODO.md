@@ -7,6 +7,7 @@
 - [x] UUID Generator
 - [x] Base64 Encode/Decode
 - [x] SHA-256 Hash
+- [x] HMAC-SHA256 Generator & Verifier
 - [x] Case Converters
 - [x] Timestamp ↔ ISO
 - [x] JWT Decoder

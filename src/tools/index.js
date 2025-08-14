@@ -44,6 +44,13 @@ export const tools = [
     component: () => import('./Sha256Tool')
   },
   {
+    id: 'hmac-sha256',
+    name: 'HMAC-SHA256',
+    description: 'Generate and verify HMAC signatures',
+    tags: ['crypto', 'auth', 'sign'],
+    component: () => import('./HmacSha256Tool')
+  },
+  {
     id: 'case',
     name: 'Case Converters',
     description: 'Convert between naming conventions',
