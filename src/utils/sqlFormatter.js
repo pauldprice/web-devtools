@@ -13,9 +13,9 @@ const SQL_KEYWORDS = [
 ];
 
 const NEWLINE_KEYWORDS = [
-  'SELECT', 'FROM', 'WHERE', 'JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN',
+  'SELECT', 'FROM', 'WHERE', 'LEFT JOIN', 'RIGHT JOIN', 'INNER JOIN',
   'OUTER JOIN', 'FULL JOIN', 'ORDER BY', 'GROUP BY', 'HAVING', 'UNION',
-  'INSERT INTO', 'UPDATE', 'DELETE FROM', 'SET', 'VALUES', 'WITH'
+  'INSERT INTO', 'UPDATE', 'DELETE FROM', 'SET', 'VALUES', 'WITH', 'JOIN'
 ];
 
 export const formatSql = (sql) => {
@@ -29,10 +29,31 @@ export const formatSql = (sql) => {
     // Remove extra spaces and normalize whitespace
     formatted = formatted.replace(/\s+/g, ' ');
     
-    // Add newlines before major keywords
-    NEWLINE_KEYWORDS.forEach(keyword => {
+    // First, protect compound keywords by replacing them with placeholders
+    const compoundKeywords = NEWLINE_KEYWORDS.filter(k => k.includes(' ')).sort((a, b) => b.length - a.length);
+    const placeholders = {};
+    let placeholderIndex = 0;
+    
+    compoundKeywords.forEach(keyword => {
+      const regex = new RegExp(`\\b${keyword.replace(' ', '\\s+')}\\b`, 'gi');
+      formatted = formatted.replace(regex, (match) => {
+        const placeholder = `__PLACEHOLDER_${placeholderIndex}__`;
+        placeholders[placeholder] = match.toUpperCase();
+        placeholderIndex++;
+        return placeholder;
+      });
+    });
+    
+    // Then handle single keywords
+    const singleKeywords = NEWLINE_KEYWORDS.filter(k => !k.includes(' '));
+    singleKeywords.forEach(keyword => {
       const regex = new RegExp(`\\s+(${keyword})\\s+`, 'gi');
       formatted = formatted.replace(regex, '\n$1 ');
+    });
+    
+    // Restore compound keywords with newlines
+    Object.keys(placeholders).forEach(placeholder => {
+      formatted = formatted.replace(placeholder, '\n' + placeholders[placeholder]);
     });
     
     // Uppercase keywords

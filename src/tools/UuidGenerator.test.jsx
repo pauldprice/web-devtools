@@ -10,7 +10,7 @@ describe('UuidGenerator', () => {
 
   it('generates new UUID on button click', () => {
     render(<UuidGenerator />)
-    const generateBtn = screen.getByText('Generate New')
+    const generateBtn = screen.getByText('Generate New UUID')
     
     fireEvent.click(generateBtn)
     

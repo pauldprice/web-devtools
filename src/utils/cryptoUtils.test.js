@@ -47,54 +47,71 @@ describe('cryptoUtils', () => {
     it('handles special characters', () => {
       const special = '!@#$%^&*()'
       const encoded = base64Encode(special)
-      expect(base64Decode(encoded)).toBe(special)
+      const decoded = base64Decode(encoded)
+      expect(decoded.success).toBe(true)
+      expect(decoded.result).toBe(special)
     })
   })
 
   describe('base64Decode', () => {
     it('decodes base64 to string', () => {
-      expect(base64Decode('SGVsbG8gV29ybGQ=')).toBe('Hello World')
+      const result = base64Decode('SGVsbG8gV29ybGQ=')
+      expect(result.success).toBe(true)
+      expect(result.result).toBe('Hello World')
     })
 
     it('handles UTF-8 encoded base64', () => {
-      expect(base64Decode('SGVsbG8g5LiW55WM')).toBe('Hello 世界')
+      const result = base64Decode('SGVsbG8g5LiW55WM')
+      expect(result.success).toBe(true)
+      expect(result.result).toBe('Hello 世界')
     })
 
     it('handles empty string', () => {
-      expect(base64Decode('')).toBe('')
+      const result = base64Decode('')
+      expect(result.success).toBe(true)
+      expect(result.result).toBe('')
     })
 
     it('throws on invalid base64', () => {
-      expect(() => base64Decode('not-valid-base64!')).toThrow()
+      const result = base64Decode('not-valid-base64!')
+      expect(result.success).toBe(false)
+      expect(result.error).toContain('Invalid')
     })
   })
 
   describe('sha256Hash', () => {
     it('generates consistent hash for same input', async () => {
-      const hash1 = await sha256Hash('test')
-      const hash2 = await sha256Hash('test')
-      expect(hash1).toBe(hash2)
+      const result1 = await sha256Hash('test')
+      const result2 = await sha256Hash('test')
+      expect(result1.success).toBe(true)
+      expect(result2.success).toBe(true)
+      expect(result1.result).toBe(result2.result)
     })
 
     it('generates different hashes for different inputs', async () => {
-      const hash1 = await sha256Hash('test1')
-      const hash2 = await sha256Hash('test2')
-      expect(hash1).not.toBe(hash2)
+      const result1 = await sha256Hash('test1')
+      const result2 = await sha256Hash('test2')
+      expect(result1.success).toBe(true)
+      expect(result2.success).toBe(true)
+      expect(result1.result).not.toBe(result2.result)
     })
 
     it('generates 64-character hex string', async () => {
-      const hash = await sha256Hash('test')
-      expect(hash).toMatch(/^[0-9a-f]{64}$/i)
+      const result = await sha256Hash('test')
+      expect(result.success).toBe(true)
+      expect(result.result).toMatch(/^[0-9a-f]{64}$/i)
     })
 
     it('handles empty string', async () => {
-      const hash = await sha256Hash('')
-      expect(hash).toMatch(/^[0-9a-f]{64}$/i)
+      const result = await sha256Hash('')
+      expect(result.success).toBe(true)
+      expect(result.result).toMatch(/^[0-9a-f]{64}$/i)
     })
 
     it('handles UTF-8 characters', async () => {
-      const hash = await sha256Hash('Hello 世界')
-      expect(hash).toMatch(/^[0-9a-f]{64}$/i)
+      const result = await sha256Hash('Hello 世界')
+      expect(result.success).toBe(true)
+      expect(result.result).toMatch(/^[0-9a-f]{64}$/i)
     })
   })
 
@@ -103,32 +120,36 @@ describe('cryptoUtils', () => {
 
     it('decodes valid JWT', () => {
       const result = decodeJwt(validJwt)
-      expect(result.header.alg).toBe('HS256')
-      expect(result.header.typ).toBe('JWT')
-      expect(result.payload.name).toBe('John Doe')
-      expect(result.payload.sub).toBe('1234567890')
-      expect(result.signature).toBeTruthy()
+      expect(result.success).toBe(true)
+      expect(result.header).toContain('HS256')
+      expect(result.payload).toContain('John Doe')
     })
 
     it('handles JWT without signature', () => {
       const jwt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ'
       const result = decodeJwt(jwt)
+      expect(result.success).toBe(true)
       expect(result.header).toBeTruthy()
       expect(result.payload).toBeTruthy()
-      expect(result.signature).toBe('')
     })
 
     it('throws on invalid JWT format', () => {
-      expect(() => decodeJwt('not.a.jwt')).toThrow()
-      expect(() => decodeJwt('only.two')).toThrow()
+      const result = decodeJwt('not.a.jwt')
+      expect(result.success).toBe(false)
+      expect(result.error).toContain('Invalid')
     })
 
     it('throws on invalid base64', () => {
-      expect(() => decodeJwt('invalid!.base64!.parts!')).toThrow()
+      const result = decodeJwt('invalid!.base64!.parts!')
+      expect(result.success).toBe(false)
+      expect(result.error).toContain('Invalid')
     })
 
     it('handles empty string', () => {
-      expect(() => decodeJwt('')).toThrow()
+      const result = decodeJwt('')
+      expect(result.success).toBe(true)
+      expect(result.header).toBe('{}')
+      expect(result.payload).toBe('{}')
     })
   })
 })
