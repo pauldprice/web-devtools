@@ -137,7 +137,7 @@ export default function HmacSha256Tool() {
           <p>• Provides data integrity and authentication using a secret key</p>
           <p>• Used for API authentication, webhooks, and secure messaging</p>
           <p>• One-way function - cannot decrypt, only verify</p>
-          <div style={{ padding: '10px', background: '#fff3cd', borderRadius: '4px', marginTop: '10px' }}>
+          <div style={{ padding: '10px', background: '#fff3cd', borderRadius: '4px', marginTop: '10px', color: '#856404' }}>
             <strong>⚠️ Security Note:</strong> Never share your secret key. HMAC is for authentication, not encryption.
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function HmacSha256Tool() {
             value={secretKey}
             onChange={(e) => setSecretKey(e.target.value)}
             placeholder="Enter your secret key (default: BBB)"
-            style={{ background: '#fff9e6' }}
+            style={{ background: '#fffbf0' }}
           />
         </div>
 
@@ -256,17 +256,17 @@ export default function HmacSha256Tool() {
           </>
         )}
 
-        <div style={{ marginTop: '30px', padding: '15px', background: '#f8f9fa', borderRadius: '4px' }}>
-          <h4>Common Use Cases</h4>
-          <ul style={{ marginLeft: '20px', marginTop: '10px' }}>
+        <div style={{ marginTop: '30px', padding: '15px', background: '#f0f0f0', borderRadius: '4px' }}>
+          <h4 style={{ color: '#333' }}>Common Use Cases</h4>
+          <ul style={{ marginLeft: '20px', marginTop: '10px', color: '#555' }}>
             <li>API request signing (e.g., AWS, webhooks)</li>
             <li>JWT token signing</li>
             <li>Message integrity verification</li>
             <li>Password-based authentication</li>
           </ul>
           <div style={{ marginTop: '15px' }}>
-            <strong>Example:</strong>
-            <pre style={{ marginTop: '5px', padding: '10px', background: 'white', borderRadius: '4px' }}>
+            <strong style={{ color: '#333' }}>Example:</strong>
+            <pre style={{ marginTop: '5px', padding: '10px', background: 'white', borderRadius: '4px', border: '1px solid #ddd', color: '#444' }}>
 {`Message: {"user":"john","action":"login"}
 Key: mySecretKey123
 HMAC: 7f3b2c1a9e8d5f4b2a1c3e5d7f9b1a3c...`}
