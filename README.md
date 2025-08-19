@@ -4,7 +4,7 @@
 
 A collection of browser-based developer tools for text and data transformations. All processing happens locally in your browser - no data ever leaves your machine.
 
-🔗 **[Try it live](https://pauldprice.github.io/web-devtools/)**
+🔗 **[Try it now](https://pauldprice.github.io/web-devtools/)**
 
 ## Features
 
